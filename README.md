@@ -16,18 +16,13 @@ The remote message bus is a bus for messaging between RMB clients and agents.
 
 ### Vlang RMB Handlers
 
-The RMB agents in this protocol getting rmb messages from the client and converting them to actions are handlers written in Vlang. 
-
+The RMB agents in this protocol getting rmb messages from the client and converting them to actions are handlers. The vlang handler then translates this action to commands that it gives out to the rust underlayer.
 
 ### Rust Underlayer
 
-
+Where gossipping, blockchain actions, happens. The p2p infrastructure.
 
 ## Protocol
-
-```mermaid
-
-```
 
 User events in browser trigger RMB client to relay messages to their RMB Agent. User's public key is used to identify user's own RMB Agent. User's RMB Agent handles the RMB message it receives, and starts gossiping in accordance. The user's RMB Agent communicates with other RMB Agents through gossip protocols, to find contacts that fit user's criteria. 
 
