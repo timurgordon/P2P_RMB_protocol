@@ -12,6 +12,10 @@ The remote message bus is a bus for messaging between RMB clients and agents.
 
 ## Protocol
 
+```mermaid
+
+```
+
 User events in browser trigger RMB client to relay messages to their RMB Agent. User's public key is used to identify user's own RMB Agent. User's RMB Agent handles the RMB message it receives, and starts gossiping in accordance. The user's RMB Agent communicates with other RMB Agents through gossip protocols, to find contacts that fit user's criteria. 
 
 ### Gossip Protocol
@@ -45,8 +49,8 @@ Tag | Reputation | Public key | Address
 
 ## Going forward
 
+Going forward this protocol will be used by the digital twin system to become the infrastructure for trading and exchanging information between twins, vendors etc.
 
-```mermaid
 
-```
+
 
