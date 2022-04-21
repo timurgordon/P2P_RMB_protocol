@@ -1,18 +1,19 @@
 # P2P_RMB_protocol
-A Peer-to-Peer communication protocol for Remote Message Bus
+A Peer-to-Peer communication protocol for Reliable Message Bus
 
-The purpose of this project is to establish a completely decentralized, peer to peer communication protocol for RMB Clients and Agents.
+The purpose of this project is to establish a completely decentralized, reliable, peer to peer, efficient and scalable communication protocol for "digital twins" using RMB Clients, Vlang RMB Handlers, Rust engines and reliable message busses. The aim is that through this protocol we can limit the amount we rely on distributed ledgers and blockchain only for currency accounting, and thus be able to build truly decentralized solutions that use data efficiently and can scale easily.
 
 ## Infrasture
 
 - The RMB is the communication agent
-- Vlang handlers translate RMB messages to actions in Rust
-- Rust Agents communicate with aggregators and other Rust Agents
-- Rust Blockchain Engine is the endpoint for executing blockchain operations
+- The RMB Client is a client side script to send RMB messages to digital twins from UIs. 
+- Vlang handlers translate RMB messages to actions in Rust, thus allowing multiple Domain Specific Languages to be built on top without necessitating modifications to the rust underlayer.
+- Rust engines communicate with aggregators, and other Rust engines directly or through gossip protocols.
+- Rust Blockchain Engine is the endpoint for executing blockchain operations.
 
 ### Reliable Message Bus
 
-The remote message bus is a bus for messaging between RMB clients and agents.
+The reliable message bus is a bus for messaging between RMB clients and agents (message handlers).
 
 - RMB Client: lives in browser, relays message to rmb agent over tf grid.
 - RMB Agent: lives in node, users own agent, can relay message to other agent.
@@ -21,10 +22,13 @@ The remote message bus is a bus for messaging between RMB clients and agents.
 
 The RMB agents in this protocol getting rmb messages from the client and converting them to actions are handlers. The vlang handler then translates this action to commands that it gives out to the rust underlayer.
 
-### Rust Underlayer
+### Rust underlayer
 
-The layer executing 
-Where gossipping (future), 
+The layer executing gossipping (future) and blockchain operations when needed through the use of a network of rust engines.
+
+### Protocols
+
+Using this infrastructure, two protocols seem to provide a desirable solution to the purpose. The Cached Gossip Networking Protocol and the Aggregated Networking Protocol. The idea is 
 
 ## Cached Gossip Networking Protocol:
 
@@ -54,7 +58,8 @@ This way, even if data is corrupted, it doesn't matter.
 
 ### Caching & hashing
 
-When RMB Agents that satisfy and respond to the broadcast are found, the conditions and resulting agent address is cached. 
+When RMB Agents that satisfy and respond to the broadcast are found, the conditions and resulting agent address is cached.
+The aim of caching is to reduce unnecessary gossipping and increase ease and speed of connections with peers.
 
 - every agent caches responses from last 1000 requests (~50MB at 0.5KB per request, 100 responses per request )
 - every agent caches last 10000 gossips (~5MB)
@@ -64,7 +69,7 @@ It is like asking your neighbor for a barber, and your neighbor remembering that
 
 Each cache row holds only 3 keys:
 
-Public key | Address | Tags
+Public key (256 bytes) | IPV6 Address (16 bytes) | Tags (~8-256 bytes)
 
 ### imAlive
 
@@ -85,14 +90,13 @@ TRADING
 7. Twin receives trade request, checks if it wants bitcoin, waits for other requests. 
 8. If agrees to terms lets know.
 
-
 BUYING
 8. The twin, after receiving confirmation and information on addresses of twins selling TFT, instructs rust underlay to contact each via RMB and set deal.
 9. Twin receives trade request, checks if it wants bitcoin, waits for other requests
 10. If request terms work twin goes to aggregator  instructs rust underlay to send confirmaton.
 11. Twin then encryp
 
-## Aggragator Networking Protocol
+## Aggregated Networking Protocol
 
 Initialization:
 1. User creates account, initializes Twin, selects node. 
