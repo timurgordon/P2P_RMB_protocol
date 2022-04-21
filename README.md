@@ -145,7 +145,9 @@ graph TD
     end
     C -->|RMB| D[Aggregator]
     D -->|RMB| C
-    C -->|RMB| E[Rust Underlayer]
+    subgraph Rust Underlayer
+    C -->|RMB| E[Rust engine]
+    end
     subgraph 2
     E --> |RMB| C
     end
