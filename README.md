@@ -1,4 +1,4 @@
-# P2P_RMB_protocol
+# Digital Twin P2P Communication protocol
 A Peer-to-Peer communication protocol for Reliable Message Bus
 
 The purpose of this project is to establish a completely decentralized, reliable, peer to peer, efficient and scalable communication protocol for "digital twins" using RMB Clients, Vlang RMB Handlers, Rust engines and reliable message busses. The aim is that through this protocol we can limit the amount we rely on distributed ledgers and blockchain only for currency accounting, and thus be able to build truly decentralized solutions that use data efficiently and can scale easily.
